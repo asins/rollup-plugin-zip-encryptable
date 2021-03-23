@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-zip-encryptable",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Rollup plugin to zip up emitted files. Work with password",
   "homepage": "https://github.com/asins/rollup-plugin-zip-encryptable",
   "repository": {
@@ -15,7 +15,6 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "LICENSE",
     "README.md"
   ],
   "scripts": {
@@ -27,7 +26,9 @@
   "keywords": [
     "rollup",
     "plugin",
-    "zip"
+    "zip",
+    "password",
+    "archiver"
   ],
   "author": "asins <asinsimple@gmail.com>",
   "license": "MIT",
@@ -40,7 +41,7 @@
     "@types/node": "^13.13.4",
     "@typescript-eslint/eslint-plugin": "^2.31.0",
     "@typescript-eslint/parser": "^2.31.0",
-    "colors": "^1.4.0",
+    "colorette": "^1.2.2",
     "eslint": "^6.8.0",
     "rollup": "^2.7.6",
     "rollup-plugin-typescript2": "^0.27.0",

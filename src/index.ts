@@ -3,6 +3,7 @@ import * as path from 'path'
 import {OutputAsset, OutputChunk, Plugin} from 'rollup'
 import archiver from 'archiver';
 import ZipEncryptable from 'archiver-zip-encryptable';
+import { green, bold } from 'colorette';
 
 interface IPluginOptions {
   /** Optional name or path to the output zip file. Relative paths are resolved in the Rollup destination directory. */
@@ -120,6 +121,7 @@ export default (options: IPluginOptions = {}): Plugin => ({
       });
 
       archive.finalize();
+      console.log(green('created zip file:') + ' ' + green(`${bold(outFile)}`));
       writeStream.on('close', resolve$1);
     });
   },
