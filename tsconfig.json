@@ -5,10 +5,10 @@
     "moduleResolution": "node",
     "sourceMap": false,
     "declaration": true,
-    "strict": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "allowSyntheticDefaultImports": true,
     "outDir": "./dist"
   },
   "include": [

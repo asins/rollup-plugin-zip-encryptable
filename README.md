@@ -1,19 +1,15 @@
-# rollup-plugin-zip
+# rollup-plugin-zip-encryptable
 
-[Rollup](https://github.com/rollup/rollup) plugin to zip up emitted files.
+[Rollup](https://github.com/rollup/rollup) plugin to zip up emitted files. Work with password.
 
 This plugin was inspired by the
-[zip-webpack-plugin](https://github.com/erikdesjardins/zip-webpack-plugin).
+[rollup-plugin-zip](https://github.com/mentaljam/rollup-plugin-zip).
 
-rollup-plugin-zip doesn't list the output directory but gets entries from the
-resulting bundle. Hence it doesn't archive any additional assets which was copied
-to the output firectory manually. To handle additional assets use the
-[rollup-plugin-copy2](https://github.com/mentaljam/rollup-plugin-copy2) plugin.
 
 ## Install
 
 ```sh
-npm i -D rollup-plugin-zip
+npm i -D rollup-plugin-zip-encryptable
 ```
 
 ## Usage
@@ -21,7 +17,7 @@ npm i -D rollup-plugin-zip
 ```js
 // rollup.config.js
 
-import zip from 'rollup-plugin-zip'
+import zipEncryptable from 'rollup-plugin-zip-encryptable'
 
 
 export default {
@@ -31,45 +27,31 @@ export default {
     format: 'es',
   },
   plugins: [
-    zip(),
+    zipEncryptable({
+      // file: './dist/test.zip',
+      dir: './dist/',
+      zlib: { level: 9 },
+      forceLocalTime: true,
+      password: '123456',
+    }),
   ],
 }
 ```
 
 ## Options
 
-### file
+See details [node-archiver-zip-encryptable](https://github.com/ksoichiro/node-archiver-zip-encryptable) and [Archiver](https://www.archiverjs.com/docs/archiver)
 
-#### Type
-
-```js
-string
-```
-
-#### Default
-
-```js
-`${npm_package_name}-${npm_package_version}.zip` || `bundle-${npm_package_version}.zip` || 'bundle.zip'
-```
-
-Optional name or path to the output zip file. Relative paths are resolved in the Rollup destination directory.
-To change the destination directory without changing the file name use the [dir option](#dir).
-
-### dir
-
-#### Type
-
-```js
-string
-```
-
-#### Default
-
-Rollup destination directory if `file` is not set. If `file` is set then `dir` is ignored.
-
-Optional path to the directory where to write the output zip file.
-Relative paths are resolved in the package base directory.
+- file - String - Optional name or path to the output zip file. Relative paths are resolved in the Rollup destination directory. 
+- dir - String - Optional path to the directory where to write the output zip file. (Rollup destination directory if file is not set. If file is set then dir is ignored.)
+- password - String - Password protected zip.
+- comment - String - Sets the zip archive comment.
+- forceLocalTime - Boolean - Forces the archive to contain local file times instead of UTC.
+- forceZip64 - Boolean - Forces the archive to contain ZIP64 headers.
+- namePrependSlash - Boolean - Prepends a forward slash to archive file paths.
+- store - Boolean - Sets the compression method to STORE.
+- zlib - Object - Passed to zlib to control compression.
 
 ## License
 
-[MIT](LICENSE) © [Petr Tsymbarovich](mailto:petr@tsymbarovich.ru)
+[MIT](LICENSE) © [asins](mailto:asinsimple@gmail.com)

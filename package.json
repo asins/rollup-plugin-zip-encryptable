@@ -1,14 +1,14 @@
 {
-  "name": "rollup-plugin-zip",
-  "version": "1.0.1",
-  "description": "Rollup plugin to zip up emitted files.",
-  "homepage": "https://github.com/mentaljam/rollup-plugin-zip",
+  "name": "rollup-plugin-zip-encryptable",
+  "version": "0.0.1",
+  "description": "Rollup plugin to zip up emitted files. Work with password",
+  "homepage": "https://github.com/asins/rollup-plugin-zip-encryptable",
   "repository": {
     "type": "git",
-    "url": "git+ssh://github.com/mentaljam/rollup-plugin-zip"
+    "url": "git+ssh://github.com/asins/rollup-plugin-zip-encryptable"
   },
   "bugs": {
-    "url": "https://github.com/mentaljam/rollup-plugin-zip/issues"
+    "url": "https://github.com/asins/rollup-plugin-zip-encryptable/issues"
   },
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
@@ -29,23 +29,22 @@
     "plugin",
     "zip"
   ],
-  "author": "Petr Tsymbarovich <petr@tsymbarovich.ru>",
+  "author": "asins <asinsimple@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "yazl": "^2.5.1"
+    "archiver": "^5.3.0",
+    "archiver-zip-encryptable": "^1.0.7"
   },
   "devDependencies": {
+    "@types/archiver": "^5.1.0",
     "@types/node": "^13.13.4",
-    "@types/yauzl": "^2.9.1",
-    "@types/yazl": "^2.4.2",
     "@typescript-eslint/eslint-plugin": "^2.31.0",
     "@typescript-eslint/parser": "^2.31.0",
     "colors": "^1.4.0",
     "eslint": "^6.8.0",
     "rollup": "^2.7.6",
     "rollup-plugin-typescript2": "^0.27.0",
-    "typescript": "^3.8.3",
-    "yauzl": "^2.10.0"
+    "typescript": "^3.8.3"
   },
   "peerDependencies": {
     "rollup": ">=2.0.2"

@@ -1,5 +1,6 @@
-.rpt2_cache/
-dist*/
+dist/
 node_modules/
 test/dist
 test/test.js
+.DS_Store
+package-lock.json
