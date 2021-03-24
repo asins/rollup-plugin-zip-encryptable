@@ -42,15 +42,58 @@ export default {
 
 See details [node-archiver-zip-encryptable](https://github.com/ksoichiro/node-archiver-zip-encryptable) and [Archiver](https://www.archiverjs.com/docs/archiver)
 
-- file - String - Optional name or path to the output zip file. Relative paths are resolved in the Rollup destination directory. 
-- dir - String - Optional path to the directory where to write the output zip file. (Rollup destination directory if file is not set. If file is set then dir is ignored.)
-- password - String - Password protected zip.
-- comment - String - Sets the zip archive comment.
-- forceLocalTime - Boolean - Forces the archive to contain local file times instead of UTC.
-- forceZip64 - Boolean - Forces the archive to contain ZIP64 headers.
-- namePrependSlash - Boolean - Prepends a forward slash to archive file paths.
-- store - Boolean - Sets the compression method to STORE.
-- zlib - Object - Passed to zlib to control compression.
+```typescript
+interface IPluginOptions {
+  /**
+   * Optional name or path to the output zip file. Relative paths are resolved in the Rollup destination directory.
+   */
+  file?: string;
+  /**
+   * Optional path to the directory where to write the output zip file. (Rollup destination directory if file is not set. If file is set then dir is ignored.)
+   */
+  dir?: string;
+  /**
+   * Password protected zip.
+   */
+  password?: string;
+  /**
+   * Sets the zip archive comment.
+   */
+  comment?: string;
+  /**
+   * Forces the archive to contain local file times instead of UTC.
+   */
+  forceLocalTime?: boolean;
+  /**
+   * Forces the archive to contain ZIP64 headers.
+   */
+  forceZip64?: boolean;
+  /**
+   * Prepends a forward slash to archive file paths.
+   */
+  namePrependSlash?: boolean;
+  /**
+   * Sets the compression method to STORE.
+   */
+  store?: boolean;
+  /**
+   * Passed to zlib to control compression.
+   * @default { level: 9 }
+   */
+  zlib?: object;
+  /**
+   * Create zip file once. Useful in watch mode.
+   * @default false
+   */
+  createOnce?: false,
+  /**
+   * Filter out the files that are not packaged into the zip package.
+   * Returning true has just been filtered out.
+   * @default null
+   */
+  filterFile?: (entry: OutputAsset | OutputChunk) => boolean;
+}
+```
 
 ## License
 
