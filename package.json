@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-zip-encryptable",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Rollup plugin to zip up emitted files. Work with password",
   "homepage": "https://github.com/asins/rollup-plugin-zip-encryptable",
   "repository": {
