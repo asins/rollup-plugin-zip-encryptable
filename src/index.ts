@@ -147,6 +147,10 @@ export default (options: IPluginOptions = {}): Plugin => {
         }
 
         const outFile = this.cache.get(Cache.outfile);
+        const dir = path.dirname(outFile);
+        if (!fs.existsSync(dir)) {
+          fs.mkdirSync(dir, { recursive: true });
+        }
         const writeStream = fs.createWriteStream(outFile);
         archive.pipe(writeStream);
 
