@@ -59,6 +59,7 @@ interface IPluginOptions {
 const isAsset = (entry: OutputAsset | OutputChunk): entry is OutputAsset => (
   entry.type === 'asset'
 )
+let isRegistered = false;
 
 
 const enum Cache {
@@ -68,7 +69,6 @@ const enum Cache {
 }
 
 export default (options: IPluginOptions = {}): Plugin => {
-  let isRegistered = false;
   let zipCreated = false;
   const {
     createOnce = false,
