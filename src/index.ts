@@ -166,7 +166,7 @@ export default (options: IPluginOptions = {}): Plugin => {
             archive.append(Buffer.from(code), { name: fileName });
             if (map) {
               const mapFile = `${fileName }.map`;
-              archive.append(Buffer.from(map), { name: mapFile });
+              archive.append(Buffer.from(map.toString()), { name: mapFile });
             }
           }
         });

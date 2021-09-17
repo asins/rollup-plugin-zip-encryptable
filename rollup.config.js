@@ -1,4 +1,4 @@
-import typescript from 'rollup-plugin-typescript2'
+import typescript from '@rollup/plugin-typescript'
 
 
 const formats = ['cjs', 'es']
@@ -7,8 +7,8 @@ const config = [
   {
     input: 'src/index.ts',
     output: [
-      { file: `dist/index.cjs.js`, format: 'cjs' },
-      { file: `dist/index.es.js`, format: 'es' },
+      { file: `dist/index.cjs.js`, format: 'cjs', exports: 'default', sourceMap: true },
+      { file: `dist/index.es.js`, format: 'es', exports: 'default', sourceMap: true },
     ],
     external: [
       'fs',
@@ -18,7 +18,9 @@ const config = [
     ],
     plugins: [
       typescript({
-        tsconfig: './tsconfig.json',
+        // tsconfig: './tsconfig.json',
+        sourceMap: true,
+        inlineSources: true,
       }),
     ],
   }
