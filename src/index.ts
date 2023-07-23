@@ -1,6 +1,6 @@
 import * as fs from 'fs'
 import * as path from 'path'
-import {OutputAsset, OutputChunk, Plugin} from 'rollup'
+import { OutputAsset, OutputChunk, Plugin } from 'rollup'
 import archiver from 'archiver';
 import ZipEncryptable from 'archiver-zip-encryptable';
 import { green, bold } from 'colorette';
@@ -47,7 +47,7 @@ interface IPluginOptions {
    * Create zip file once. Useful in watch mode.
    * @default false
    */
-  createOnce?: false,
+  createOnce?: boolean;
   /**
    * Filter out the files that are not packaged into the zip package.
    * Returning true has just been filtered out.
@@ -73,12 +73,12 @@ export default (options: IPluginOptions = {}): Plugin => {
   const {
     createOnce = false,
   } = options;
-  
+
   return {
     name: 'archiverZip',
 
     generateBundle({ dir }): void {
-      if(createOnce && zipCreated) return;
+      if (createOnce && zipCreated) return;
 
       // Save the output directory path
       let distDir = process.cwd();
@@ -103,19 +103,19 @@ export default (options: IPluginOptions = {}): Plugin => {
         } = process.env;
         outFile = packageName;
         if (packageVersion) {
-          outFile += `-${ packageVersion}`;
+          outFile += `-${packageVersion}`;
         }
         if (outDir && !(fs.existsSync(outDir) && fs.statSync(outDir).isDirectory())) {
           fs.mkdirSync(outDir, { recursive: true });
         }
-        outFile = path.resolve(outDir || distDir, `${outFile }.zip`);
+        outFile = path.resolve(outDir || distDir, `${outFile}.zip`);
       }
       // Save the output file path
       this.cache.set(Cache.outfile, outFile);
     },
 
     writeBundle(_, bundle): Promise<void> {
-      if(createOnce && zipCreated) return Promise.resolve();
+      if (createOnce && zipCreated) return Promise.resolve();
 
       return new Promise(resolve$1 => {
         // const distDir = this.cache.get(Cache.distdir);
@@ -156,7 +156,7 @@ export default (options: IPluginOptions = {}): Plugin => {
 
         Object.entries(bundle).forEach(([, entry]) => {
           const { fileName } = entry;
-          if(typeof options.filterFile === 'function' && options.filterFile(entry)) return;
+          if (typeof options.filterFile === 'function' && options.filterFile(entry)) return;
 
           if (isAsset(entry)) {
             const { source } = entry;
@@ -165,7 +165,7 @@ export default (options: IPluginOptions = {}): Plugin => {
             const { map, code } = entry;
             archive.append(Buffer.from(code), { name: fileName });
             if (map) {
-              const mapFile = `${fileName }.map`;
+              const mapFile = `${fileName}.map`;
               archive.append(Buffer.from(map.toString()), { name: mapFile });
             }
           }
